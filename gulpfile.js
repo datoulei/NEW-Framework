@@ -37,9 +37,9 @@ gulp.task('default', function () {
 	for (var i in entries) {
 		//TODO 读取html,进行修改
 		var relativePath = path.relative(__dirname, entries[i]);
-		var htmlFilename = (relativePath + '.html').replace('.entry.js', '');
+		var htmlFilename = (relativePath + '.ejs').replace('.entry.js', '');
 		config.plugins.push(new HtmlWebpackPlugin({
-			filename: (i + '.html').replace('entry.', ''),
+			filename: (i + '.ejs').replace('entry.', ''),
 			templateContent: modifyTemplate(htmlFilename),
 			inject: true,
 			chunks: [i, 'commons']

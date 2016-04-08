@@ -1,8 +1,0 @@
-{
-  "javascript": {
-    "commons": "//localhost:3001/commons.js",
-    "index.entry": "//localhost:3001/index.entry.js"
-  },
-  "styles": {},
-  "assets": {}
-}

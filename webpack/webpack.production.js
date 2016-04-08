@@ -3,7 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CleanPlugin = require('clean-webpack-plugin');
 var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
-var assetsPath = path.resolve(__dirname, 'assets/dist');
+var assetsPath = path.resolve(__dirname, '../assets/dist');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
@@ -68,7 +68,7 @@ var config = {
 		alias:{}
 	},
 	plugins: [
-		new CleanPlugin([assetsPath], { root: path.join(__dirname) }),
+		new CleanPlugin([assetsPath], { root: path.resolve(__dirname, '..') }),
 		new ForceCaseSensitivityPlugin(),
 		new webpack.DefinePlugin({
       "process.env": {

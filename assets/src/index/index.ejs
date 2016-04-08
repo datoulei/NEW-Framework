@@ -5,7 +5,7 @@
     <title>index</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app"><%-body%></div>
     <% for (script in assets.scripts) { %>
       <script src="<%= assets.scripts[script] %>"></script>
     <% } %>
