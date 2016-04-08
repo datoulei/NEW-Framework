@@ -1,3 +1,5 @@
+使用 NodeJS + ExpressJS + Webpack 打造你的前端框架。
+
 # 如何启动项目
 
 1. 检出项目
