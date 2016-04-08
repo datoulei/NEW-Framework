@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <% for (script in assets.scripts) { %>
+      <script src="<%= assets.scripts[script] %>"></script>
+    <% } %>
+  </body>
+</html>
