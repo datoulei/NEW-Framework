@@ -8,6 +8,10 @@ var _ = require('lodash');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack/webpack.production');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var libjs = [
+	'<script src="http://cdn.staticfile.org/react/0.14.3/react.min.js"></script>',
+	'<script src="http://cdn.staticfile.org/react/0.14.3/react-dom.min.js"></script>'
+];
 //清除数据
 gulp.task('clean', function () {
 	return gulp.src(['assets/dist/*', 'assets/assets-map.json'], {read: false})
@@ -15,7 +19,9 @@ gulp.task('clean', function () {
 });
 
 function modifyTemplate(filename) {
-	return fs.readFileSync(filename, 'utf-8');
+	var html = fs.readFileSync(filename, 'utf-8');
+	var script = libjs.join('');
+	return html.replace('</body>', script + '</body>');
 }
 
 gulp.task('default', function () {
@@ -42,7 +48,7 @@ gulp.task('default', function () {
 			filename: (i + '.ejs').replace('entry.', ''),
 			templateContent: modifyTemplate(htmlFilename),
 			inject: true,
-			chunks: [i, 'commons']
+			chunks: [i]
 		}));
 	}
 
@@ -50,5 +56,9 @@ gulp.task('default', function () {
 		if (err) {
 			throw new gutil.PluginError('webpack-build', err);
 		}
+		console.log(stats.toString({
+			timings: true,
+			color: true
+		}));
 	});
 });

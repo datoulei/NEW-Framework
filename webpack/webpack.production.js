@@ -11,10 +11,10 @@ var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./w
 var config = {
 	context: path.resolve(__dirname),
 	entry: {
-		commons: [
-      'react',
-      'react-dom'
-    ]
+		// commons: [
+    //   'react',
+    //   'react-dom'
+    // ]
 	},
 	output: {
 		filename: '[name]-[hash:6].js',
@@ -62,13 +62,29 @@ var config = {
       test: /\.(jpeg|jpg|png|gif)$/,
       loader: 'url-loader?limit=10240'
     }],
-		noParse:[]
+		noParse:[
+			'react',
+			'react-dom'
+		]
 	},
 	resolve:{
+		extensions: ['', '.js'],
 		alias:{}
 	},
+	externals: {
+		'react': 'React',
+		'react-dom': 'ReactDOM'
+	},
 	plugins: [
-		new CleanPlugin([assetsPath], { root: path.resolve(__dirname, '..') }),
+		// new CleanPlugin([assetsPath], { root: path.resolve(__dirname, '..') }),
+		new webpack.ProvidePlugin({
+	    React: "React",
+			react: "React",
+			"window.react": "React",
+			"window.React": "React",
+	    ReactDOM: "ReactDOM",
+			"window.ReactDOM": "ReactDOM"
+		}),
 		new ForceCaseSensitivityPlugin(),
 		new webpack.DefinePlugin({
       "process.env": {
@@ -82,8 +98,12 @@ var config = {
 		new ExtractTextPlugin("[name]-[chunkhash:6].css", {allChunks: true}),
 
     // ignore dev config
-    new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
-
+    new webpack.IgnorePlugin(/\.\/dev/, /\/config$/, /react/),
+		// new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'commons',
+    //   filename: "[name]-[hash:6].js",
+    //   minChunks: Infinity
+    // }),
     // optimizations
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),

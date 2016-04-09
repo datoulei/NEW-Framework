@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
-const rootElement = document.getElementById('app');
+const reactClass = (<App/>);
+if (__CLIENT__) {
+  const rootElement = document.getElementById('app');
+  ReactDOM.render(reactClass, rootElement);
+}
 
-React.render((
-  <App/>
-), rootElement);
+if (__SERVER__) {
+  module.exports = reactClass;
+}
