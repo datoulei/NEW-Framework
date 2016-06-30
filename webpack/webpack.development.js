@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var url = require('url');
 var assetsPath = path.resolve(__dirname, '../assets/dist');
+var projectBasePath = path.resolve(__dirname, '..');
 var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 var host = (process.env.HOST || 'localhost');
 var port;
@@ -81,7 +82,7 @@ reactTransform[1].transforms.push({
 var config = {
   debug: true,
   devtool: 'eval-source-map',
-  context: path.resolve(__dirname, '..'),
+  context: projectBasePath,
   entry: {
     commons: [
       'react',

@@ -3,7 +3,8 @@
 require('babel-core/register');
 require.extensions['.css'] = function() {return null};
 var path = require('path');
-var rootDir = path.resolve(__dirname, '..');
+var projectBasePath = path.resolve(__dirname, '..');
+
 /**
  * Define isomorphic constants.
  */
@@ -16,6 +17,6 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('../webpack/webpack-isomorphic-tools'))
   .development(__DEVELOPMENT__)
-  .server(rootDir, function() {
+  .server(projectBasePath, function() {
     require('../app');
   });

@@ -4,12 +4,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CleanPlugin = require('clean-webpack-plugin');
 var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 var assetsPath = path.resolve(__dirname, '../assets/dist');
+var projectBasePath = path.resolve(__dirname, '..');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
 var config = {
-	context: path.resolve(__dirname),
+	context: projectBasePath,
 	entry: {
 		// commons: [
     //   'react',

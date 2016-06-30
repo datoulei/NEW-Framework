@@ -36,4 +36,4 @@ node_modules
 assets/dist
 
 # ignore webpack-assets.json
-webpack/webpack-assets.json
+webpack-assets.json
